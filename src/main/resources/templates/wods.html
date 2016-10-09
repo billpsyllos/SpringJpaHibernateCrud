@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework Guru</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(wods)}">
+        <h2>Product List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Wod Name</th>
+            </tr>
+            <tr th:each="wod : ${wods}">
+                <td th:text="${wod.id}"><a href="/product/${wod.id}">Id</a></td>
+                <td th:text="${wod.description}">Product Id</td>
+                <td><a th:href="${'/wod/' + wod.id}">View</a></td>
+                <td><a th:href="${'/wod/edit/' + wod.id}">Edit</a></td>
+                <td><a th:href="${'/wod/delete/' + wod.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
