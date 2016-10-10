@@ -18,6 +18,8 @@ public class Wod {
     private int capacity;
     private float finalTime;
     private String type;
+    private String finalRnd;
+    private String level;
 
 
     public Long getId() {
@@ -66,6 +68,22 @@ public class Wod {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getFinalRnd() {
+        return finalRnd;
+    }
+
+    public void setFinalRnd(String finalRnd) {
+        this.finalRnd = finalRnd;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     @Override

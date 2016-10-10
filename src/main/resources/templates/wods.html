@@ -10,15 +10,30 @@
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div th:if="${not #lists.isEmpty(wods)}">
-        <h2>Product List</h2>
+        <h2>Wods List</h2>
         <table class="table table-striped">
             <tr>
                 <th>Id</th>
-                <th>Wod Name</th>
+                <th>Level</th>
+                <th>Date</th>
+                <th>Wod</th>
+                <th>Type</th>
+                <th>Cap</th>
+                <th>Final Time</th>
+                <th>Final Rounds</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="wod : ${wods}">
                 <td th:text="${wod.id}"><a href="/product/${wod.id}">Id</a></td>
-                <td th:text="${wod.description}">Product Id</td>
+                <td th:text="${wod.level}">Level</td>
+                <td th:text="${wod.date}">Date</td>
+                <td th:text="${wod.description}">Wod</td>
+                <td th:text="${wod.type}">Type</td>
+                <td th:text="${wod.capacity}">Cap</td>
+                <td th:text="${wod.finalTime}">Final Time</td>
+                <td th:text="${wod.finalRnd}">Final Rounds</td>
                 <td><a th:href="${'/wod/' + wod.id}">View</a></td>
                 <td><a th:href="${'/wod/edit/' + wod.id}">Edit</a></td>
                 <td><a th:href="${'/wod/delete/' + wod.id}">Delete</a></td>
