@@ -1,5 +1,7 @@
 package com.rest;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -31,12 +33,26 @@ public class DatabaseConfig {
      * the application.properties file (using the env object).
      */
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws URISyntaxException {
+
+
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
-        dataSource.setUrl(env.getProperty("db.url"));
-        dataSource.setUsername(env.getProperty("db.username"));
-        dataSource.setPassword(env.getProperty("db.password"));
+
+        if(System.getenv("DATABASE_URL") != null){
+            URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+            dataSource.setUrl("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
+            dataSource.setUsername(dbUri.getUserInfo().split(":")[0]);
+            dataSource.setPassword(dbUri.getUserInfo().split(":")[1]);
+        }else {
+
+            dataSource.setUrl(env.getProperty("db.url"));
+            dataSource.setUsername(env.getProperty("db.username"));
+            dataSource.setPassword(env.getProperty("db.password"));
+        }
+
+
         return dataSource;
     }
 
