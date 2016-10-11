@@ -1,6 +1,9 @@
 course-reviews-api.iml
-/.idea
-/.gradle
-/build
-/gradle
-gradlew
+build
+.gradle
+.idea
+out
+*.iml
+*.ipr
+*.iws
+.DS_Store
