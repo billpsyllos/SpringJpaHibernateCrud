@@ -28,13 +28,19 @@ public class WodController {
     @RequestMapping(value = "wods/{id}")
     private String showWod(@PathVariable Long id , Model model){
         model.addAttribute("wod", wodRepository.findOne(id));
-        return "wodshow";
+        return "wodshow.html";
     }
 
     @RequestMapping(value = "wod/edit/{id}")
     private String edit(@PathVariable Long id, Model model){
         model.addAttribute("wod",wodRepository.findOne(id));
         return "wodform";
+    }
+
+    @RequestMapping(value = "/wod/{id}")
+    private String showWod(@PathVariable Integer id, Model model){
+        model.addAttribute("wod",wodRepository.getWodById(id.longValue()));
+        return "wodshow";
     }
 
     @RequestMapping(value = "/wods")
